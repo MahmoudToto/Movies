@@ -30,7 +30,8 @@ class LoginActivity : AppCompatActivity() {
             binding.apply {
                 val email = loginTvEmail.text.toString()
                 val passsword = loginTvPassword.text.toString()
-               // loginviewmodel.logInFirebase(email,passsword)
+
+                loginviewmodel.logInFirebase(email,passsword)
 
             }
         }

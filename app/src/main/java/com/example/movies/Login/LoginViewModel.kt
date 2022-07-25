@@ -12,7 +12,7 @@ class LoginViewModel: ViewModel(),LoginRepo.state {
     val repo = LoginRepo(this)
 
     fun  logInFirebase(email:String , password : String ){
-        repo.createUserandEmail(email,password)
+        repo.logIn(email,password)
     }
 
     override fun success() {

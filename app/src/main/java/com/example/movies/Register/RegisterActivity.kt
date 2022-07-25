@@ -21,8 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
         binding.registerTvLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         binding.registerBtn.setOnClickListener {
@@ -36,13 +35,11 @@ class RegisterActivity : AppCompatActivity() {
                 val user = User( id = currentUserId , name, email, phone, password, Confpassword)
                 registerViewModel.Registeration(email,password,user)
 
-
             }
 
         }
 
     }
-
 
     override fun onBackPressed() {
         if (pressed) {

@@ -64,6 +64,7 @@ class MoviesTopRatedAdapter : RecyclerView.Adapter<MoviesTopRatedAdapter.ViewHol
 
             img_fav.setOnClickListener {
                 onItemListner.getClickedFavourite(movieslist[layoutPosition].id)
+
                 img_fav.setImageResource(R.drawable.ic_heartclicked)
             }
 

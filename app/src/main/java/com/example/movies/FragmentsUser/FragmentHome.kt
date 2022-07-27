@@ -72,11 +72,15 @@ class FragmentHome : Fragment() {
                 startActivity(intent)
             }
 
-            override fun getClickedFavourite(postion: Int) {
-                showToast(requireContext(), "Movie Added")
-                BaseApplication.db?.getDao()?.insertMoviesFav(postion)
-
-
+            override fun getClickedFavourite(postion: Int) {// 1
+                var state  =  BaseApplication.db?.getDao()?.search(postion)// هل ال Id رقم 1 موجود فى table دا ؟
+                if(state==true){
+                    showToast(requireContext(), "Already Exists")
+                    return
+                }else{
+                    BaseApplication.db?.getDao()?.insertMoviesFav(postion)
+                    showToast(requireContext(), "Movie Added")
+                }
             }
 
         })

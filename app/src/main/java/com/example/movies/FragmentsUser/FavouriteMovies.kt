@@ -41,6 +41,7 @@ class FavouriteMovies : Fragment() {
            }
         }
 */
+
             BaseApplication.db?.getDao()?.getFavMovies()
                 ?.let { sentDataToRecyclerviewFavourite(it) }
         deleteMovie()

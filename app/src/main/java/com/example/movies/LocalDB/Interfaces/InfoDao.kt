@@ -25,4 +25,30 @@ interface InfoDao {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Query("SELECT * FROM favourite WHERE id LIKE :id")
+
+    fun  search(id  : Int  ):Boolean
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,29 +1,20 @@
 package com.example.movies.Register
 
-import android.content.Context
-import android.content.Intent
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.movies.Login.LoginActivity
-import com.example.movies.MainActivity
 import com.example.movies.Pojo.User
 
-class RegisterViewModel: ViewModel(),RegisterationRepo.state {
-    var context: Context? = null
-    val repo = RegisterationRepo(this)
+class RegisterViewModel : ViewModel() {
+    val repo = RegisterationRepo()
+    private val _mutable = MutableLiveData<Boolean>()
+    val mutable: LiveData<Boolean> = _mutable
 
-    fun  Registeration(email:String,password:String , user: User){
-
-       repo.createUserWithEmailAndPassword(email,password,user)
+    fun Registeration(user: User) {
+        _mutable.postValue(repo.createUserWithEmailAndPassword(user))
     }
 
-
-    override fun onSuccess() {
-        context?.startActivity(Intent(context,LoginActivity::class.java))
-    }
-
-    override fun onError(error: String) {
-        TODO("Not yet implemented")
-    }
+    //getApplication<Application>()?.startActivity(Intent(getApplication(),LoginActivity::class.java))
 
 
 }

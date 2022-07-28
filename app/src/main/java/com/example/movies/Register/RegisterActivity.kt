@@ -1,19 +1,21 @@
 package com.example.movies.Register
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.movies.Login.LoginActivity
 import com.example.movies.Pojo.User
 import com.example.movies.databinding.ActivityRegisterBinding
+import com.example.movies.showToast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     var pressed = false
-    val registerViewModel = RegisterViewModel()
+    var registerViewModel = RegisterViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -32,13 +34,24 @@ class RegisterActivity : AppCompatActivity() {
                 var password = registerTvPassword.text.toString()
                 var Confpassword = registerTvConfrimPassword.text.toString()
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                val user = User( id = currentUserId , name, email, phone, password, Confpassword)
-                registerViewModel.Registeration(email,password,user)
+                val user = User(id = currentUserId, name, email, phone, password, Confpassword)
+                registerViewModel.Registeration(user)
+                getToken()
 
             }
 
         }
 
+    }
+
+    fun getToken() {
+        registerViewModel.mutable.observe(this) {
+            if (it == true) {
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
+                showToast(applicationContext, "Registeration failed")
+            }
+        }
     }
 
     override fun onBackPressed() {

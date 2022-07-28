@@ -2,26 +2,21 @@ package com.example.movies.Login
 
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginRepo(var sentState: state) {
-
-    fun logIn(email: String, password: String) {
+class LoginRepo() {
+    fun logIn(email: String, password: String) :Boolean{
+        var state  = true
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    sentState.success()
-
-                } else {
-                    sentState.error(it.exception.toString())
+                if (!it.isSuccessful) {
                     println(it.exception?.message)
+                   return@addOnCompleteListener
+
                 }
             }
-
+return state
     }
 
-    interface state {
-        fun success()
-        fun error(name: String)
-    }
+
 
 
 }

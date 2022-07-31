@@ -32,9 +32,9 @@ class RegisterActivity : AppCompatActivity() {
                 var email = registerTvEmail.text.toString()
                 var phone = registerTvPhone.text.toString()
                 var password = registerTvPassword.text.toString()
-                var Confpassword = registerTvConfrimPassword.text.toString()
+                var location = registerTvLocation.text.toString()
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                val user = User(id = currentUserId, name, email, phone, password, Confpassword)
+                val user = User(id = currentUserId, name, email, phone, password, location)
                 registerViewModel.Registeration(user)
                 getToken()
 

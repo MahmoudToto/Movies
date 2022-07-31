@@ -3,20 +3,28 @@ package com.example.movies.FragmentsUser
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import com.example.movies.Adapters.MoviesPopularAdapter
 import com.example.movies.Adapters.MoviesTopRatedAdapter
-import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.Details.Details
+import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.Pojo.Movies.Result
+import com.example.movies.Pojo.User
 import com.example.movies.RemoteDB.MoviesPopular.MoviesPopularViewModel
 import com.example.movies.RemoteDB.MoviesTopRated.MoviesViewModel
 import com.example.movies.databinding.FragmentHomeBinding
 import com.example.movies.showToast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
 
 class FragmentHome : Fragment() {
 
@@ -34,11 +42,32 @@ class FragmentHome : Fragment() {
 
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-   //     binding.nameUser.text = FirebaseAuth.getInstance().currentUser!!.displayName
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser?.uid.toString())
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()==null){
+                        Log.d("Error","Null Data From Firebase")
+                        return
+                    }else{
+
+                        val user : User? = snapshot.getValue(User::class.java)
+                        binding.nameUser.text=user?.name
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Error","Error From Firebase")
+                }
+
+            })
+
+Log.d("Test",FirebaseAuth.getInstance().currentUser?.email.toString())
         getTopRatedMovies()
         getIdFromTopRatedMovies()
         getPopularMovies()
         getIdFromPopularMovies()
+
         return binding.root
     }
 
@@ -102,8 +131,9 @@ class FragmentHome : Fragment() {
             }
 
         })
+
     }
 
-  
+
 
 }

@@ -6,7 +6,7 @@ data class User(
     val email: String = "".lowercase(),
     val number: String = "",
     val password: String = "",
-    val confpassword: String = "",
+    val location: String = "",
 )
 
 

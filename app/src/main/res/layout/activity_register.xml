@@ -107,6 +107,17 @@
 
 
         <EditText
+            android:id="@+id/register_tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:inputType="text"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="#F2F2F2"
+            android:drawablePadding="@dimen/_5sdp"
+            android:hint="Location"
+            android:padding="@dimen/_3sdp" />
+        <EditText
             android:id="@+id/register_tv_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -117,19 +128,6 @@
             android:drawablePadding="@dimen/_5sdp"
             android:hint="Password"
             android:inputType="numberPassword"
-            android:padding="@dimen/_3sdp" />
-
-        <EditText
-            android:id="@+id/register_tv_confrimPassword"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:inputType="numberPassword"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="#F2F2F2"
-            android:drawableLeft="@drawable/lock"
-            android:drawablePadding="@dimen/_5sdp"
-            android:hint="Confirm Password"
             android:padding="@dimen/_3sdp" />
 
         <Button

@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.movies.Adapters.MoviesPopularAdapter
 import com.example.movies.Adapters.MoviesTopRatedAdapter
 import com.example.movies.Details.Details
+import com.example.movies.FragmentsUser.FragmentProfile.UserViewModel
 import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.Pojo.Movies.Result
 import com.example.movies.Pojo.User
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 
 class FragmentHome : Fragment() {
@@ -42,27 +44,9 @@ class FragmentHome : Fragment() {
 
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser?.uid.toString())
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()==null){
-                        Log.d("Error","Null Data From Firebase")
-                        return
-                    }else{
 
-                        val user : User? = snapshot.getValue(User::class.java)
-                        binding.nameUser.text=user?.name
 
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d("Error","Error From Firebase")
-                }
-
-            })
-
-Log.d("Test",FirebaseAuth.getInstance().currentUser?.email.toString())
+        Log.d("Test", FirebaseAuth.getInstance().currentUser?.email.toString())
         getTopRatedMovies()
         getIdFromTopRatedMovies()
         getPopularMovies()
@@ -101,12 +85,12 @@ Log.d("Test",FirebaseAuth.getInstance().currentUser?.email.toString())
                 startActivity(intent)
             }
 
-            override fun getClickedFavourite(postion: Int) {// 1
-                var state  =  BaseApplication.db?.getDao()?.search(postion)// هل ال Id رقم 1 موجود فى table دا ؟
-                if(state==true){
+            override fun getClickedFavourite(postion: Int) {
+                var state = BaseApplication.db?.getDao()?.search(postion)
+                if (state == true) {
                     showToast(requireContext(), "Already Exists")
                     return
-                }else{
+                } else {
                     BaseApplication.db?.getDao()?.insertMoviesFav(postion)
                     showToast(requireContext(), "Movie Added")
                 }
@@ -124,16 +108,22 @@ Log.d("Test",FirebaseAuth.getInstance().currentUser?.email.toString())
                 startActivity(intent)
             }
 
-            override fun getClickedFavourite(id: Int) {
+            override fun getClickedFavourite(postion: Int) {
                 Log.d("idk", id.toString())
-            BaseApplication.db?.getDao()?.insertMoviesFav(id)
-
+                var state = BaseApplication.db?.getDao()?.search(postion)
+                if (state == true) {
+                    showToast(requireContext(), "Already Exists")
+                    return
+                } else {
+                    BaseApplication.db?.getDao()?.insertMoviesFav(postion)
+                    showToast(requireContext(), "Movie Added")
+                }
             }
+
 
         })
 
     }
-
 
 
 }

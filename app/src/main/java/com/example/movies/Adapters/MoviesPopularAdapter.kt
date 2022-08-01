@@ -14,7 +14,7 @@ import com.example.movies.Pojo.Movies.Result
 import java.util.*
 
 class MoviesPopularAdapter : RecyclerView.Adapter<MoviesPopularAdapter.ViewHolder>() {
-   private lateinit var onItemListner: SentDetails
+    private lateinit var onItemListner: SentDetails
     var movieslist: List<Result> = emptyList()
 
     fun setList(data: List<Result>) {
@@ -28,11 +28,11 @@ class MoviesPopularAdapter : RecyclerView.Adapter<MoviesPopularAdapter.ViewHolde
     ): MoviesPopularAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_movies_popular, parent, false)
-        return ViewHolder(view,onItemListner)
+        return ViewHolder(view, onItemListner)
     }
 
     override fun onBindViewHolder(holder: MoviesPopularAdapter.ViewHolder, position: Int) {
-        var data: Result= movieslist[position]
+        var data: Result = movieslist[position]
         holder.setId(data)
     }
 
@@ -42,38 +42,38 @@ class MoviesPopularAdapter : RecyclerView.Adapter<MoviesPopularAdapter.ViewHolde
 
     interface SentDetails {
         fun onItemClick(postion: Int)
-        fun getClickedFavourite(id: Int)
+        fun getClickedFavourite(postion: Int)
     }
+
     fun setOnItemClick(item: SentDetails) {
         this.onItemListner = item
     }
-    inner class ViewHolder(itemView: View,itemlistenr: SentDetails) : RecyclerView.ViewHolder(itemView) {
+
+    inner class ViewHolder(itemView: View, itemlistenr: SentDetails) :
+        RecyclerView.ViewHolder(itemView) {
         var img: ImageView = itemView.findViewById(R.id.id_moviesPopular)
         var img_fav: ImageView = itemView.findViewById(R.id.imgFav_popular)
         var titel: TextView = itemView.findViewById(R.id.name_of_moviesPopular)
-        var rated: TextView = itemView.findViewById(R.id.rating_popular)
-        var language: TextView = itemView.findViewById(R.id.typeof_movies)
 
 
-                init {
-                    img.setOnClickListener {
-                        onItemListner.onItemClick(movieslist[layoutPosition].id)
-                    }
-                    img_fav.setOnClickListener {
-                        onItemListner.getClickedFavourite(movieslist[layoutPosition].id)
-                        img_fav.setImageResource(R.drawable.ic_heartclicked)
-                    }
-          }
+
+        init {
+            img.setOnClickListener {
+                onItemListner.onItemClick(movieslist[layoutPosition].id)
+            }
+            img_fav.setOnClickListener {
+                onItemListner.getClickedFavourite((movieslist[layoutPosition].id))
+                img_fav.setImageResource(R.drawable.ic_heartclicked)
+            }
+        }
 
         fun setId(data: Result) {
             titel.text = data.title
-            language.text = data.original_language
+
             Glide.with(img.context)
                 .load(Const.BASE_URL_IMG + data.poster_path)
                 .into(img)
-            val r = Random()
-            val i1 = r.nextInt(10 - 5) + 5
-            rated.text="${i1}"
+
         }
 
     }

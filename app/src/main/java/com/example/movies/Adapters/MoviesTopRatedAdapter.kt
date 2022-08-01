@@ -53,7 +53,7 @@ class MoviesTopRatedAdapter : RecyclerView.Adapter<MoviesTopRatedAdapter.ViewHol
         RecyclerView.ViewHolder(itemView) {
         var img: ImageView = itemView.findViewById(R.id.id_movies)
         var titel: TextView = itemView.findViewById(R.id.name_of_movies)
-        var rated: TextView = itemView.findViewById(R.id.toprated_movies)
+
         var img_fav: ImageView = itemView.findViewById(R.id.imgFav)
 
 
@@ -64,7 +64,6 @@ class MoviesTopRatedAdapter : RecyclerView.Adapter<MoviesTopRatedAdapter.ViewHol
 
             img_fav.setOnClickListener {
                 onItemListner.getClickedFavourite(movieslist[layoutPosition].id)
-
                 img_fav.setImageResource(R.drawable.ic_heartclicked)
             }
 
@@ -75,9 +74,7 @@ class MoviesTopRatedAdapter : RecyclerView.Adapter<MoviesTopRatedAdapter.ViewHol
             Glide.with(img.context)
                 .load(Const.BASE_URL_IMG + data.poster_path)
                 .into(img)
-            val r = Random()
-            val i1 = r.nextInt(10 - 5) + 5
-            rated.text = "${i1}"
+
         }
 
     }

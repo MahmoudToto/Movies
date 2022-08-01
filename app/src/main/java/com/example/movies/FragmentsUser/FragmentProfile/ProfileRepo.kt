@@ -21,6 +21,7 @@ class ProfileRepo {
                    }else{
 
                        val user : User? = snapshot.getValue(User::class.java)
+                       Log.d("Data",user?.name.toString())
                        mutable.postValue(user)
                    }
                     }

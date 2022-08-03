@@ -1,8 +1,5 @@
 package com.example.movies.Pojo.Movies
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
 
 data class Movies(
 

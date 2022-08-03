@@ -58,13 +58,7 @@
 
 
         </LinearLayout>
-        <ImageView
-            android:id="@+id/imgFav_popular"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_margin="@dimen/_5sdp"
-            android:layout_gravity="center|end"
-            android:src="@drawable/ic_heart"  />
+
     </LinearLayout>
 
     </LinearLayout>

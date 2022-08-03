@@ -42,12 +42,6 @@
             android:textSize="@dimen/_15ssp" />
 
 
-        <ImageView
-            android:id="@+id/imgFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:src="@drawable/ic_heart" />
     </LinearLayout>
 
 </LinearLayout>

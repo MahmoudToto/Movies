@@ -54,19 +54,19 @@ class MoviesTopRatedAdapter : RecyclerView.Adapter<MoviesTopRatedAdapter.ViewHol
         var img: ImageView = itemView.findViewById(R.id.id_movies)
         var titel: TextView = itemView.findViewById(R.id.name_of_movies)
 
-        var img_fav: ImageView = itemView.findViewById(R.id.imgFav)
+//        var img_fav: ImageView = itemView.findViewById(R.id.imgFav)
 
 
         init {
             img.setOnClickListener {
                 onItemListner.onItemClick(movieslist[layoutPosition].id)
             }
-
+/*
             img_fav.setOnClickListener {
                 onItemListner.getClickedFavourite(movieslist[layoutPosition].id)
                 img_fav.setImageResource(R.drawable.ic_heartclicked)
             }
-
+*/
         }
 
         fun setId(data: Result) {

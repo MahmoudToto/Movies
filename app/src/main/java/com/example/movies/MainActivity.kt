@@ -8,7 +8,7 @@ import com.example.movies.FragmentsUser.FavouriteMovies
 import com.example.movies.FragmentsUser.FragmentProfile.FragmentProfile
 
 import com.example.movies.databinding.ActivityMainBinding
-//dshsjfjks
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

@@ -80,6 +80,7 @@ class FragmentHome : Fragment() {
     private fun getIdFromTopRatedMovies() {
         moviesTopRatedAdapter.setOnItemClick(object : MoviesTopRatedAdapter.SentDetails {
             override fun onItemClick(id: Int) {
+                Log.d("Ge",id.toString())
                 val intent = Intent(requireContext(), Details::class.java)
                 intent.putExtra("id", id)
                 startActivity(intent)

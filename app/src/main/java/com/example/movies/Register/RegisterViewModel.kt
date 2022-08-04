@@ -14,7 +14,6 @@ class RegisterViewModel : ViewModel() {
         _mutable.postValue(repo.createUserWithEmailAndPassword(user))
     }
 
-    //getApplication<Application>()?.startActivity(Intent(getApplication(),LoginActivity::class.java))
 
 
 }

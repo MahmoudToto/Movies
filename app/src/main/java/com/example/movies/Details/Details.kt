@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.movies.FragmentsUser.FragmentHome
 import com.example.movies.LocalDB.BaseApplication
+import com.example.movies.MainActivity
 import com.example.movies.Pojo.Const
 import com.example.movies.R
 import com.example.movies.databinding.ActivityDetailsBinding
@@ -14,30 +16,34 @@ import com.example.movies.showToast
 
 class Details : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
+    private val detailsViewmodel = DetailsViewModel()
     val moviesID = DetailsViewModel()
     var catId: Int? = null
-    var result:Boolean = false
+    var result: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         catId = intent.getIntExtra("id", 78)
-
-        result = BaseApplication.db?.getDao()?.search(catId!!)!!
-        if(result==true){
-            binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
-        }else{
-            binding.imgFav.setImageResource(R.drawable.ic_heart)
+        detailsViewmodel.getResult()
+        detailsViewmodel.mutable.observe(this) {
+            Log.d("result",it.toString())
         }
+
+//            if(it==true){
+//                Log.d("result",it.toString())
+//                binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
+//            }else{
+//                Log.d("result",it.toString())
+//                binding.imgFav.setImageResource(R.drawable.ic_heart)
+
+            // }
+
+
+      //  getResult()
         getMoviesByID()
-       favouriteMovies()
-        binding.watchId.setOnClickListener {
-            showToast(applicationContext, "We will add this soon")
-        }
-
-        binding.backIcon.setOnClickListener {
-            startActivity(Intent(applicationContext, FragmentHome::class.java))
-        }
+        favouriteMovies()
+        selectedButton()
     }
 
     fun getMoviesByID() {
@@ -54,16 +60,46 @@ class Details : AppCompatActivity() {
 
     fun favouriteMovies() {
         binding.imgFav.setOnClickListener {
-            if (result==true){
+            if (BaseApplication.db?.getDao()?.search(catId!!) == true) {
                 BaseApplication.db?.getDao()?.deleteMovieFavourite(catId!!)
                 showToast(applicationContext, "Remove Movie ")
                 binding.imgFav.setImageResource(R.drawable.ic_heart)
-            }else{
+                result = false
+            } else {
+
                 BaseApplication.db?.getDao()?.insertMoviesFav(catId!!)
                 showToast(applicationContext, "Movie Added")
                 binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
+                result = true
             }
 
         }
     }
+
+    fun selectedButton() {
+        binding.apply {
+            watchId.setOnClickListener {
+                showToast(applicationContext, "We will add this soon")
+            }
+            backIcon.setOnClickListener {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+            }
+        }
+    }
+/*
+    fun getResult(){
+        detailsViewmodel.mutable.observe(this){
+            Log.d("result",it.toString())
+//            if(it==true){
+//                Log.d("result",it.toString())
+//                binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
+//            }else{
+//                Log.d("result",it.toString())
+//                binding.imgFav.setImageResource(R.drawable.ic_heart)
+
+           // }
+        }
+    }
+
+ */
 }

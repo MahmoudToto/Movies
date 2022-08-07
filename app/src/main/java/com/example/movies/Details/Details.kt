@@ -6,17 +6,23 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.movies.Adapters.MoviesLatestAdapter
+import com.example.movies.Adapters.MoviesTopRatedAdapter
 import com.example.movies.FragmentsUser.FragmentHome
 import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.MainActivity
 import com.example.movies.Pojo.Const
+import com.example.movies.Pojo.Movies.Result
 import com.example.movies.R
+import com.example.movies.RemoteDB.MoviesPopular.MoviesLatestViewModel
 import com.example.movies.databinding.ActivityDetailsBinding
 import com.example.movies.showToast
 
 class Details : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     private val detailsViewmodel = DetailsViewModel()
+    private val movieLatest = MoviesLatestViewModel()
+    private val moviesLatestAdapter by lazy {MoviesLatestAdapter() }
     val moviesID = DetailsViewModel()
     var catId: Int? = null
     var result: Boolean = false
@@ -44,6 +50,7 @@ class Details : AppCompatActivity() {
         getMoviesByID()
         favouriteMovies()
         selectedButton()
+    getLatestMovie()
     }
 
     fun getMoviesByID() {
@@ -102,4 +109,14 @@ class Details : AppCompatActivity() {
     }
 
  */
+
+fun getLatestMovie(){
+    movieLatest.getLatestMovies().observe(this){
+sendDataToAdapter(it)
+    }
+}
+    fun sendDataToAdapter(mList:List<Result>){
+        moviesLatestAdapter.setList(mList)
+        binding.recReco.adapter= moviesLatestAdapter
+    }
 }

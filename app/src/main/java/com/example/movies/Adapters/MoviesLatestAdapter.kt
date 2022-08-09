@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.Pojo.Const
+import com.example.movies.Pojo.LatestMovies.LatestMovies
+import com.example.movies.Pojo.Movies.Movies
 import com.example.movies.Pojo.Movies.Result
 import com.example.movies.R
 import java.util.*
 
 class MoviesLatestAdapter : RecyclerView.Adapter<MoviesLatestAdapter.ViewHolder>() {
     var movieslist: List<Result> = emptyList()
+
 
     fun setList(data: List<Result>) {
         this.movieslist = data

@@ -9,80 +9,120 @@
 
     tools:context=".FragmentsUser.FragmentHome">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="TopRated"
-            android:layout_gravity="top"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15ssp" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/poppins_bold"
-            android:gravity="end"
-            android:text="View All > "
-            android:textColor="@color/white"
-            android:textSize="@dimen/_13ssp" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="TopRated"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="end"
+                    android:text="View All > "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13ssp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Popular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="end"
+                    android:text="View All > "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13ssp" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_movies_popular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="New Movies "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_movies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:orientation="horizontal"
-
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Popular"
-android:layout_gravity="top"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15ssp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/poppins_bold"
-            android:gravity="end"
-            android:text="View All > "
-            android:textColor="@color/white"
-            android:textSize="@dimen/_13ssp" />
-    </LinearLayout>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_movies_newplaying"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_movies_popular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

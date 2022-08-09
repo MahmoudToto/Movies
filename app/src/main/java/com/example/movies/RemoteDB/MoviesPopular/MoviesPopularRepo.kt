@@ -13,10 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MoviesPopularRepo {
-//    val instance = context?.let { DB.getInstance(context = it) }
-//    val db = instance?.let { RepoDB(it) }
 
-// use coroutines
     fun getMovies(): MutableLiveData<List<Result>> {
         var mutableLiveData = MutableLiveData<List<Result>>()
         var userInterfacebuilder = Builder.retorfitBuilder.create(UserInterFace::class.java)

@@ -41,10 +41,9 @@ android:layout_weight="1"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-
         android:fontFamily="@font/metrophobic"
         android:text="Name of movie "
-        android:textColor="#4A4B4D"
+        android:textColor="@color/white"
         android:textSize="@dimen/_15ssp" />
     <TextView
         android:id="@+id/overview_movies_fav"
@@ -54,7 +53,7 @@ android:layout_weight="1"
         android:padding="@dimen/_2sdp"
         android:fontFamily="@font/metrophobic"
         android:text="Overview"
-        android:textColor="#4A4B4D"
+        android:textColor="@color/white"
         android:textSize="@dimen/_15ssp" />
 </LinearLayout>
 

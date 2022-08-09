@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movies.Adapters.MoviesLatestAdapter
 import com.example.movies.Adapters.MoviesTopRatedAdapter
@@ -12,6 +13,8 @@ import com.example.movies.FragmentsUser.FragmentHome
 import com.example.movies.LocalDB.BaseApplication
 import com.example.movies.MainActivity
 import com.example.movies.Pojo.Const
+import com.example.movies.Pojo.LatestMovies.LatestMovies
+import com.example.movies.Pojo.Movies.Movies
 import com.example.movies.Pojo.Movies.Result
 import com.example.movies.R
 import com.example.movies.RemoteDB.MoviesPopular.MoviesLatestViewModel
@@ -20,9 +23,8 @@ import com.example.movies.showToast
 
 class Details : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
-    private val detailsViewmodel = DetailsViewModel()
     private val movieLatest = MoviesLatestViewModel()
-    private val moviesLatestAdapter by lazy {MoviesLatestAdapter() }
+    private val moviesLatestAdapter by lazy { MoviesLatestAdapter() }
     val moviesID = DetailsViewModel()
     var catId: Int? = null
     var result: Boolean = false
@@ -31,26 +33,11 @@ class Details : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         catId = intent.getIntExtra("id", 78)
-        detailsViewmodel.getResult()
-        detailsViewmodel.mutable.observe(this) {
-            Log.d("result",it.toString())
-        }
 
-//            if(it==true){
-//                Log.d("result",it.toString())
-//                binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
-//            }else{
-//                Log.d("result",it.toString())
-//                binding.imgFav.setImageResource(R.drawable.ic_heart)
-
-            // }
-
-
-      //  getResult()
         getMoviesByID()
         favouriteMovies()
         selectedButton()
-    getLatestMovie()
+        getLatestMovie()
     }
 
     fun getMoviesByID() {
@@ -93,30 +80,19 @@ class Details : AppCompatActivity() {
             }
         }
     }
-/*
-    fun getResult(){
-        detailsViewmodel.mutable.observe(this){
-            Log.d("result",it.toString())
-//            if(it==true){
-//                Log.d("result",it.toString())
-//                binding.imgFav.setImageResource(R.drawable.ic_heartclicked)
-//            }else{
-//                Log.d("result",it.toString())
-//                binding.imgFav.setImageResource(R.drawable.ic_heart)
 
-           // }
+    fun getLatestMovie() {
+        movieLatest.getUpcommingMovie().observe(this) {
+        Log.d("Lateset", it[0].title)
+
+
+       sendDataToAdapter(it)
         }
     }
 
- */
-
-fun getLatestMovie(){
-    movieLatest.getLatestMovies().observe(this){
-sendDataToAdapter(it)
-    }
-}
-    fun sendDataToAdapter(mList:List<Result>){
+    fun sendDataToAdapter(mList: List<Result>) {
         moviesLatestAdapter.setList(mList)
-        binding.recReco.adapter= moviesLatestAdapter
+        binding.recReco.adapter = moviesLatestAdapter
+        binding.recReco.layoutManager = GridLayoutManager(applicationContext,2)
     }
 }

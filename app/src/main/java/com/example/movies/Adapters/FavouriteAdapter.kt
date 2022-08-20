@@ -16,7 +16,6 @@ import com.example.movies.Pojo.MoviesId.MoviesID
 import java.util.*
 class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.ViewHolder>() {
     private lateinit var onItemListner:SentDetails
-    //var movieslist: List<Favourite> = mutableListOf()
     var movieslist  : MutableList<Favourite> = mutableListOf()
 
     fun setList(data: MutableList<Favourite> ) {

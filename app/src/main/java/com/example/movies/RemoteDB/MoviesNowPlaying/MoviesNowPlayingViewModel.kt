@@ -11,7 +11,7 @@ import com.example.movies.Pojo.MoviesId.MoviesID
 
 class MoviesNowPlayingViewModel:ViewModel() {
     private val myRepo: MoviesNowPlayingRepo by lazy { MoviesNowPlayingRepo() }
-
+//
     fun getNowPlayingMovies():MutableLiveData<List<Result>>{
         return  myRepo.getNowPlayingMovies()
     }

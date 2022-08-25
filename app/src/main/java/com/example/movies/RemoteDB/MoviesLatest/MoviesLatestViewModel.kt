@@ -11,7 +11,7 @@ import com.example.movies.RemoteDB.MoviesLatest.RecommendationRepo
 
 class MoviesLatestViewModel :ViewModel(){
     val movieRepo :RecommendationRepo by lazy { RecommendationRepo() }
-
+//
 
     fun getUpcommingMovie(): MutableLiveData<List<Result>> {
         return  movieRepo.getUpCommingMovie()

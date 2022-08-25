@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
     val loginviewmodel by lazy { LoginViewModel() }
-
+//
     private lateinit var binding: ActivityLoginBinding
     var pressed = false
     override fun onCreate(savedInstanceState: Bundle?) {

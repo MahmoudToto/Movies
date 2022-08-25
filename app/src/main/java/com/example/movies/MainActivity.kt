@@ -11,6 +11,7 @@ import com.example.movies.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+//
     private lateinit var binding: ActivityMainBinding
     var pressed = false
     override fun onCreate(savedInstanceState: Bundle?) {

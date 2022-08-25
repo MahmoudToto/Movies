@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#2E2835"
     android:orientation="vertical">
 
@@ -212,18 +212,25 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="109dp"
+            android:layout_marginTop="266dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:text="SignOut"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp" />
+
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/register_btn"
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/bg_button"
-        android:gravity="center"
-        android:text="SignOut"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15ssp" />
 </LinearLayout>

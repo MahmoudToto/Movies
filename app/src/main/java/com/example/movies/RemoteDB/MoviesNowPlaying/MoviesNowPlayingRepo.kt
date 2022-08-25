@@ -13,7 +13,6 @@ import retrofit2.Response
 class MoviesNowPlayingRepo() {
 
 
-//
     fun getNowPlayingMovies(): MutableLiveData<List<Result>> {
         val mutableLiveData = MutableLiveData<List<Result>>()
         val userInterfacebuilder = Builder.retorfitBuilder.create(UserInterFace::class.java)
